@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Population Lists</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #808080; /* Set gray background color */
+      border: 2px solid black; /* Add black border */
+    }
+    h1 {
+      color: #0000ff; /* Set heading color */
+      padding-bottom: 10px; /* Add some space after heading */
+    }
+    .activepop-programs, .overall-attendance-programs {
+      padding: 20px; /* Add padding to containers */
+      margin-bottom: 20px; /* Add space between containers */
+
+      h1 {
+      font-family: 'Your Font Name', sans-serif; /* Use custom font for headings */
+      color: #0000ff; /* Set heading color */
+      padding-bottom: 10px; /* Add some space after heading */
+    }
+    }
+    .activepop-programs-li {
+      margin-bottom: 10px; /* Add space between list items */
+    }
+    .activepop-programs-li {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f2f2f2; /* Light gray background color */
+  border: 2px solid black; /* Black border */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Apply shadow */
+  transform: perspective(1000px) rotateY(-10deg); /* Apply perspective and rotation */
+  transition: transform 0.5s ease; /* Add transition for smooth effect */
+}
+
+/* Add hover effect for 3D box */
+.activepop-programs-li:hover {
+  transform: perspective(1000px) rotateY(0deg); /* Rotate back to original position on hover */
+}
+
+
+/* Add hover effect for 3D box */
+.activepop-programs-li:hover {
+  transform: perspective(1000px) rotateY(0deg); /* Rotate back to original position on hover */
+}
+
+    .activepop-programs-li a:hover {
+      background-color: #f0f0f0; /* Change background color on hover */
+    }
+    .overall-attendance-programs-li {
+      margin-bottom: 30px; /* Add space between list items */
+      color: #000; /* Set overall attendance text color to black */
+    }
+   
+    .bar-chart-container {
+      margin-top:-190px; /* Add space between the pie chart and the bar chart */
+      
+    }
+  </style>
+</head>
+<body>
+  <h1>Active Populations</h1>
+  <div style="display: flex;">
+    <div>
+      <div class="activepop-programs">   
+        <ol class="activepop-programs-ol">
+          <li class="activepop-programs-li"><a href="/population/ais/2021">Msc - Artificial Intelligence Systems - F2021 ({{ students[0][0][0] }} Students) ↗</a></li>
+          <li class="activepop-programs-li"><a href="/population/cs/2021">Msc - Cyber Security - F2021 ({{ students[1][0][0] }} Students) ↗</a></li>
+          <li class="activepop-programs-li"><a href="/population/dsa/2021">MSc - Data Science and Analytics - F2021 ({{ students[2][0][0] }} Students) ↗</a></li>
+          <li class="activepop-programs-li"><a href="/population/ism/2021">Msc - Information Systems Management - F2021 ({{ students[3][0][0] }} Students) ↗</a></li>
+          <li class="activepop-programs-li"><a href="/population/se/2021">MSc - Software Engineering - F2021 ({{ students[4][0][0] }} Students) ↗</a></li>
+        </ol>
+      </div>
+      <div class="activepop-programs">   
+        <ol class="activepop-programs-ol">
+          <li class="activepop-programs-li"><a href="/population/ais/2020">Msc - Artificial Intelligence Systems - F2020 ({{ students[0][0][0] }} Students) ↗</a></li>
+          <li class="activepop-programs-li"><a href="/population/cs/2020">Msc - Cyber Security - F2021 ({{ students[1][0][0] }} Students) ↗</a></li>
+          <li class="activepop-programs-li"><a href="/population/dsa/2020">MSc - Data Science and Analytics - F2020 ({{ students[2][0][0] }} Students) ↗</a></li>
+          <li class="activepop-programs-li"><a href="/population/ism/2020">Msc - Information Systems Management - F2020 ({{ students[3][0][0] }} Students) ↗</a></li>
+          <li class="activepop-programs-li"><a href="/population/se/2020">MSc - Software Engineering - F2020 ({{ students[4][0][0] }} Students) ↗</a></li>
+        </ol>
+      </div>
+    </div>
+    <canvas id="myPieChart"  width="400" height="400" style="margin-left: 200px;"></canvas>
+  </div>
+
+  <h1>Overall Attendance</h1>
+   <div style="display: flex;">
+  <div class="overall-attendance-programs">
+    <ol class="overall-attendance-programs-ol">
+      <li class="overall-attendance-programs-li">Msc - Artificial Intelligence Systems - F2020 ({{ attendance_2020[0][0][3] }}%)</li>
+      <li class="overall-attendance-programs-li">Msc - Cyber Security - F2020 ({{ attendance_2020[1][0][3] }}%)</li>
+      <li class="overall-attendance-programs-li">MSc - Data Science and Analytics - F2020 ({{ attendance_2020[2][0][3] }}%)</li>
+      <li class="overall-attendance-programs-li">Msc - Information Systems Management - F2020({{ attendance_2020[3][0][3] }}%)</li>
+      <li class="overall-attendance-programs-li">MSc - Software Engineering - F2020 ({{ attendance_2020[4][0][3] }}%)</li>
+    </ol>
+  </div>
+  
+  <div style="display: flex;"></div>
+  <div class="overall-attendance-programs">
+    <ol class="overall-attendance-programs-ol">
+      <li class="overall-attendance-programs-li">Msc - Artificial Intelligence Systems - F2021 ({{ attendance_2021[0][0][3] }}%)</li>
+      <li class="overall-attendance-programs-li">Msc - Cyber Security - F2021 ({{ attendance_2021[1][0][3] }}%)</li>
+      <li class="overall-attendance-programs-li">MSc - Data Science and Analytics - F2021 ({{ attendance_2021[2][0][3] }}%)</li>
+      <li class="overall-attendance-programs-li">Msc - Information Systems Management - F2021({{ attendance_2021[3][0][3] }}%)</li>
+      <li class="overall-attendance-programs-li">MSc - Software Engineering - F2021 ({{ attendance_2021[4][0][3] }}%)</li>
+    </ol>
+  </div>
+
+
+  <div class="bar-chart-container" >
+    <canvas id="myBarChart" width="490" height="490" style="margin-left: 10px;"></canvas>
+
+  </div>
+
+  <script>
+    // Data for the pie chart (you need to define this based on your data)
+    var pieChartData = {
+        labels: ["AIS", "CS", "DSA", "ISM", "SE"],
+        datasets: [{
+            data: [4, 5, 7, 5, 4],
+            backgroundColor: ["#8B0000", "#36A2EB", "#B8860B", "#00008B", "#006400"]
+        }]
+    };
+     
+// Data for the bar chart
+var barChartData = {
+    labels: ["AIS 2020", "CS 2020", "DSA 2020", "ISM 2020", "SE 2020", "AIS 2021", "CS 2021", "DSA 2021", "ISM 2021", "SE 2021"],
+    datasets: [{
+        label: 'Overall Attendance (%)',
+        data: [74.07, 70.00,69.17, 71.43, 73.14, 75.00, 63.89, 73.89, 69.14, 68.37,],
+        backgroundColor: ["#FFD2D2", "#CCE5FF", "#FFF3CD", "#D9EAD3", "#E5DBFF", "#FFD2D2", "#CCE5FF", "#FFF3CD", "#D9EAD3", "#E5DBFF"], // Lighter colors for each bar
+        borderColor: ["#FF0000", "#0000FF", "#FFA500", "#008000", "#800080","#FF0000", "#0000FF", "#FFA500", "#008000", "#800080"], // Darker border color
+        borderWidth: 1
+    }]
+};
+
+
+    // Get the canvas elements
+    var pieCtx = document.getElementById("myPieChart").getContext("2d");
+    var barCtx = document.getElementById("myBarChart").getContext("2d");
+
+// Create the pie chart
+var myPieChart = new Chart(pieCtx, {
+    type: 'pie',
+    data: pieChartData,
+    options: {
+        responsive: false,
+        maintainAspectRatio: false,
+        legend: {
+            labels: {
+                fontColor: 'black' // Set label font color to black
+            }
+        }
+    }
+});
+
+
+
+    
+    // Create the bar chart
+var myBarChart = new Chart(barCtx, {
+    type: 'bar',
+    data: barChartData,
+    options: {
+        responsive: false,
+        maintainAspectRatio: false,
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    color: '#FFFFFF' // Dark black color for the grid lines on the x-axis
+                }
+            }],
+            yAxes: [{
+                gridLines: {
+                    color: '#FFFFFF' // Dark black color for the grid lines on the y-axis
+                }
+            }]
+        }
+    }
+});
+
+  </script>
+</body>
+</html>

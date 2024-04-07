@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grades Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS */
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            max-width: 900px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.2);
+            padding: 30px;
+            margin: 50px auto;
+        }
+        .heading-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .heading-container h1 {
+            color: #007bff;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .sub-heading {
+            font-size: 1.5rem;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+        .table-container {
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        table th, table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #dee2e6;
+            font-size: 1.1rem;
+        }
+        table th {
+            background-color: red;
+            color: #fff;
+        }
+        table tbody tr:nth-child(even) {
+            background-color: whitesmoke;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="table-container">
+            <h2>Grades for {{ grades_data[0]['course_name'] }}</h2>
+            <!-- Grades Table -->
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Course Name</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for grade in grades_data %}
+                    <tr>
+                        <td>{{ grade.student_first_name }}</td>
+                        <td>{{ grade.student_last_name }}</td>
+                        <td>{{ grade.course_name }}</td>
+                        <td>{{ grade.grade_score }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
